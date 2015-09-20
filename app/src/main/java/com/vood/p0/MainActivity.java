@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+
+    Toast toast = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,13 @@ public class MainActivity extends Activity {
                 CharSequence toastText = String.format("This button will launch my %s app!", appNameText);
                 int duration = Toast.LENGTH_SHORT;
 
-                Toast.makeText(context, toastText, duration).show();
+                if(toast == null) {
+                    toast = Toast.makeText(context, toastText, duration);
+                } else {
+                    toast.setText(toastText);
+                }
+
+                toast.show();
             }
         };
 
